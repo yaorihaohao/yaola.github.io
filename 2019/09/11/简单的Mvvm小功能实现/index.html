@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="总结By yrh">
-<meta property="og:url" content="https://yaorihaohao.github.io/yaola.github.io/index.html">
+<meta name="description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的Mvvm小功能实现">
+<meta property="og:url" content="https://yaorihaohao.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/index.html">
 <meta property="og:site_name" content="总结By yrh">
+<meta property="og:description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-10T20:50:07.529Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="总结By yrh">
+<meta name="twitter:title" content="简单的Mvvm小功能实现">
+<meta name="twitter:description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://yaorihaohao.github.io/yaola.github.io/">
+  <link rel="canonical" href="https://yaorihaohao.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/">
 
 
 
 
 
-  <title>总结By yrh</title>
+  <title>简单的Mvvm小功能实现 | 总结By yrh</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/" itemprop="url">简单的Mvvm小功能实现</a></h1>
+          <h1 class="post-title" itemprop="name headline">简单的Mvvm小功能实现</h1>
         
 
         <div class="post-meta">
@@ -298,13 +299,9 @@
       
 
       
-        
-          
-            <p>晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下<br>由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况</p>
+        <p>晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下<br>由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况</p>
 <p>new Vue()  =&gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进行diff算法 。然后进行generate生成 render function 等 后续进行重新记录<br>已经凌晨4.50了 88 睡觉了</p>
 
-          
-        
       
     </div>
     
@@ -321,132 +318,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/09/总结记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yaorihao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/yaola.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="总结By yrh">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/yaola.github.io/2019/09/09/总结记录/" itemprop="url">总结记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-09T01:04:55+08:00">
-                2019-09-09
-              </time>
+              <a href="/yaola.github.io/2019/09/09/总结记录/" rel="next" title="总结记录">
+                <i class="fa fa-chevron-left"></i> 总结记录
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>之前基本上的总结都是在印象笔记中进行 无法与之分享 花了一些事件搭建github 依赖hexo 进行基础博客的搭建～<br>陆续进行总结和记录生活</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -456,10 +349,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -467,6 +361,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -663,6 +561,10 @@
   
 
   
+  <script type="text/javascript" src="/yaola.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/yaola.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
