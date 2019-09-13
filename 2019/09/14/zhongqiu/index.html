@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
+<meta name="description" content="你不知道的javascript(中) 关于promise 和Generator的相关内容日常中我所遇到的问题和书中的共识？ 异步的问题 遇到的问题 调用过早 调用过晚 回调被多次调用 一次不调(环境等因素 参数成功没有调用) 异常被吞了    历史原因由于依赖第三方库 在早期这并不定是安全的 我们给予某第三方库，如果调用成功，执行我们的回调。 可能它内部的问题导致生产环境下异常 这是非常严肃的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单的Mvvm小功能实现">
-<meta property="og:url" content="https://yaorihaohao.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/index.html">
+<meta property="og:title" content="中秋晚">
+<meta property="og:url" content="https://yaorihaohao.github.io/yaola.github.io/2019/09/14/zhongqiu/index.html">
 <meta property="og:site_name" content="总结By yrh">
-<meta property="og:description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
+<meta property="og:description" content="你不知道的javascript(中) 关于promise 和Generator的相关内容日常中我所遇到的问题和书中的共识？ 异步的问题 遇到的问题 调用过早 调用过晚 回调被多次调用 一次不调(环境等因素 参数成功没有调用) 异常被吞了    历史原因由于依赖第三方库 在早期这并不定是安全的 我们给予某第三方库，如果调用成功，执行我们的回调。 可能它内部的问题导致生产环境下异常 这是非常严肃的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-11T07:08:57.205Z">
+<meta property="og:updated_time" content="2019-09-13T18:17:23.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单的Mvvm小功能实现">
-<meta name="twitter:description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
+<meta name="twitter:title" content="中秋晚">
+<meta name="twitter:description" content="你不知道的javascript(中) 关于promise 和Generator的相关内容日常中我所遇到的问题和书中的共识？ 异步的问题 遇到的问题 调用过早 调用过晚 回调被多次调用 一次不调(环境等因素 参数成功没有调用) 异常被吞了    历史原因由于依赖第三方库 在早期这并不定是安全的 我们给予某第三方库，如果调用成功，执行我们的回调。 可能它内部的问题导致生产环境下异常 这是非常严肃的。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://yaorihaohao.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/">
+  <link rel="canonical" href="https://yaorihaohao.github.io/yaola.github.io/2019/09/14/zhongqiu/">
 
 
 
 
 
-  <title>简单的Mvvm小功能实现 | 总结By yrh</title>
+  <title>中秋晚 | 总结By yrh</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/14/zhongqiu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yaorihao">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单的Mvvm小功能实现</h1>
+          <h1 class="post-title" itemprop="name headline">中秋晚</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-11T04:43:15+08:00">
-                2019-09-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-14T01:42:26+08:00">
+                2019-09-14
               </time>
             
 
@@ -299,8 +299,34 @@
       
 
       
-        <p>晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下<br>由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况</p>
-<p>new Vue()  =&gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进行diff算法 。然后进行generate生成 render function 等 后续进行重新记录<br>已经凌晨4.50了 88 睡觉了</p>
+        <h3 id="你不知道的javascript-中-关于promise-和Generator的相关内容"><a href="#你不知道的javascript-中-关于promise-和Generator的相关内容" class="headerlink" title="你不知道的javascript(中) 关于promise 和Generator的相关内容"></a>你不知道的javascript(中) 关于promise 和Generator的相关内容</h3><h5 id="日常中我所遇到的问题和书中的共识？-异步的问题"><a href="#日常中我所遇到的问题和书中的共识？-异步的问题" class="headerlink" title="日常中我所遇到的问题和书中的共识？ 异步的问题"></a>日常中我所遇到的问题和书中的共识？ 异步的问题</h5><ul>
+<li>遇到的问题<ol>
+<li>调用过早</li>
+<li>调用过晚</li>
+<li>回调被多次调用</li>
+<li>一次不调(环境等因素 参数成功没有调用)</li>
+<li>异常被吞了</li>
+</ol>
+</li>
+</ul>
+<h6 id="历史原因"><a href="#历史原因" class="headerlink" title="历史原因"></a>历史原因</h6><p>由于依赖第三方库 在早期这并不定是安全的 我们给予某第三方库，如果调用成功，执行我们的回调。 可能它内部的问题导致生产环境下异常 这是非常严肃的。</p>
+<p><strong>解决办法</strong><br>ES6 提供了Promise来解决上面的额问题</p>
+<ol>
+<li>调用过早？ 这个是不存在的 实际上then的时候是异步的 我手写过模拟promise 实际上then的时候如果在回调之前只是将方法push到数组里，当结果实行后 然后forEach数组的内容。</li>
+<li>调用过晚？ 不存在这种情况，并且实际上可以设置超时时间等辅助的方法</li>
+<li>调用次数？ 状态只会从pending =&gt; fulfilled / rejected 且不会被改变 只能一次 俗称单一性</li>
+<li>一次不掉？ 只有resolve/reject两种可能</li>
+<li>异常 结果是放置在reject上进行</li>
+</ol>
+<p>另几个API比较重要<br>Promise.all / race<br>分别是 门栏和门闩的区别。 all是所有的promise都执行了且是并发的的情况才会被then  race类似于抢占式 有一个改变状态就改变了状态触发了then</p>
+<p>Promise也有自身的缺陷</p>
+<ol>
+<li>顺序错误的处理问题，分不清是哪个环节的问题</li>
+<li>单一值 如果要多值的话只能再封装 不过可以使用promise.all来进行转化</li>
+<li>单决值 只有从pending=&gt; fulfilled/rejected 两种状态并且回不去 有时候比较鸡肋</li>
+<li>无法取消</li>
+<li>性能上肯定有损耗一些的 但为了上面的5种问题的解决方案 可以<strong>忍</strong></li>
+</ol>
 
       
     </div>
@@ -325,8 +351,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/yaola.github.io/2019/09/09/总结记录/" rel="next" title="总结记录">
-                <i class="fa fa-chevron-left"></i> 总结记录
+              <a href="/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/" rel="next" title="简单的Mvvm小功能实现">
+                <i class="fa fa-chevron-left"></i> 简单的Mvvm小功能实现
               </a>
             
           </div>
@@ -334,10 +360,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/yaola.github.io/2019/09/14/zhongqiu/" rel="prev" title="中秋晚">
-                中秋晚 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -389,8 +411,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -432,6 +463,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#你不知道的javascript-中-关于promise-和Generator的相关内容"><span class="nav-number">1.</span> <span class="nav-text">你不知道的javascript(中) 关于promise 和Generator的相关内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#日常中我所遇到的问题和书中的共识？-异步的问题"><span class="nav-number">1.0.1.</span> <span class="nav-text">日常中我所遇到的问题和书中的共识？ 异步的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#历史原因"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">历史原因</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

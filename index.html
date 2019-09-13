@@ -229,6 +229,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/14/zhongqiu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaorihao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/yaola.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总结By yrh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/yaola.github.io/2019/09/14/zhongqiu/" itemprop="url">中秋晚</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-14T01:42:26+08:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="你不知道的javascript-中-关于promise-和Generator的相关内容"><a href="#你不知道的javascript-中-关于promise-和Generator的相关内容" class="headerlink" title="你不知道的javascript(中) 关于promise 和Generator的相关内容"></a>你不知道的javascript(中) 关于promise 和Generator的相关内容</h3><h5 id="日常中我所遇到的问题和书中的共识？-异步的问题"><a href="#日常中我所遇到的问题和书中的共识？-异步的问题" class="headerlink" title="日常中我所遇到的问题和书中的共识？ 异步的问题"></a>日常中我所遇到的问题和书中的共识？ 异步的问题</h5><ul>
+<li>遇到的问题<ol>
+<li>调用过早</li>
+<li>调用过晚</li>
+<li>回调被多次调用</li>
+<li>一次不调(环境等因素 参数成功没有调用)</li>
+<li>异常被吞了</li>
+</ol>
+</li>
+</ul>
+<h6 id="历史原因"><a href="#历史原因" class="headerlink" title="历史原因"></a>历史原因</h6><p>由于依赖第三方库 在早期这并不定是安全的 我们给予某第三方库，如果调用成功，执行我们的回调。 可能它内部的问题导致生产环境下异常 这是非常严肃的。</p>
+<p><strong>解决办法</strong><br>ES6 提供了Promise来解决上面的额问题</p>
+<ol>
+<li>调用过早？ 这个是不存在的 实际上then的时候是异步的 我手写过模拟promise 实际上then的时候如果在回调之前只是将方法push到数组里，当结果实行后 然后forEach数组的内容。</li>
+<li>调用过晚？ 不存在这种情况，并且实际上可以设置超时时间等辅助的方法</li>
+<li>调用次数？ 状态只会从pending =&gt; fulfilled / rejected 且不会被改变 只能一次 俗称单一性</li>
+<li>一次不掉？ 只有resolve/reject两种可能</li>
+<li>异常 结果是放置在reject上进行</li>
+</ol>
+<p>另几个API比较重要<br>Promise.all / race<br>分别是 门栏和门闩的区别。 all是所有的promise都执行了且是并发的的情况才会被then  race类似于抢占式 有一个改变状态就改变了状态触发了then</p>
+<p>Promise也有自身的缺陷</p>
+<ol>
+<li>顺序错误的处理问题，分不清是哪个环节的问题</li>
+<li>单一值 如果要多值的话只能再封装 不过可以使用promise.all来进行转化</li>
+<li>单决值 只有从pending=&gt; fulfilled/rejected 两种状态并且回不去 有时候比较鸡肋</li>
+<li>无法取消</li>
+<li>性能上肯定有损耗一些的 但为了上面的5种问题的解决方案 可以<strong>忍</strong></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -503,7 +650,7 @@
               
                 <a href="/yaola.github.io/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
