@@ -229,6 +229,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/15/浏览器渲染一个html-都经历了什么？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaorihao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/yaola.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总结By yrh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/yaola.github.io/2019/09/15/浏览器渲染一个html-都经历了什么？/" itemprop="url">浏览器渲染一个html 都经历了什么？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-15T00:20:37+08:00">
+                2019-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="浏览器渲染一个html都发生了些什么？"><a href="#浏览器渲染一个html都发生了些什么？" class="headerlink" title="浏览器渲染一个html都发生了些什么？"></a>浏览器渲染一个html都发生了些什么？</h3><h5 id="废话不多说-直接上图"><a href="#废话不多说-直接上图" class="headerlink" title="废话不多说 直接上图"></a>废话不多说 直接上图</h5><p><img src="static/img/htmlRender.jpg" alt="渲染流程图"></p>
+<ol>
+<li>解析代码<ul>
+<li>将html =&gt; dom tree</li>
+<li>将css  =&gt; cssDom styletree 这里的css样式都是全部经过计算 平常写的都是相对值 需要经过继承、计算等。</li>
+</ul>
+</li>
+<li>合并树(render tree)<ul>
+<li>从dom根节点进行遍历 和cssdom进行合并 生成渲染树(render tree)。</li>
+</ul>
+</li>
+<li>layout css提供了部分布局信息,但浏览器想要的是相对于设备视窗的确切信息和大小，仅仅靠render tree不能全部描述。缺少节点之间的关系等。如果修改了布局 就会触发layer进行重新计算</li>
+<li>painting 遍历渲染树，进行每一个节点的绘制</li>
+</ol>
+<p>最后有一个composite这个存在争议 </p>
+<p>当我们的样式进行更新了 发生了什么呢？</p>
+<ol>
+<li>通过js来动态更新了样式</li>
+<li>判断是不是布局的修改<ul>
+<li>如果是修改了布局 <strong>js =&gt; style =&gt;  render =&gt; layout =&gt; painting =&gt; compoisition</strong></li>
+<li>如果修改的是样式不是有关于布局的 <strong>js=&gt; style =&gt; render =&gt; painting=&gt; composition</strong> 不会进行触发layout的计算</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/14/zhongqiu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -650,7 +793,7 @@
               
                 <a href="/yaola.github.io/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
