@@ -229,6 +229,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/16/圣杯和双飞翼布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaorihao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/yaola.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总结By yrh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/yaola.github.io/2019/09/16/圣杯和双飞翼布局/" itemprop="url">圣杯和双飞翼布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-16T00:15:46+08:00">
+                2019-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="花点时间整理下圣杯和双飞翼布局"><a href="#花点时间整理下圣杯和双飞翼布局" class="headerlink" title="花点时间整理下圣杯和双飞翼布局"></a>花点时间整理下圣杯和双飞翼布局</h3><p>主要是解决左右两边定长 中间自适应的问题。<br>当然在现在我觉得如果浏览器环境允许的话 使用<strong>Flex</strong> 最好代码量也少</p>
+<p>先写个总结 圣杯/双飞翼<br>个人感觉还是圣杯语感比较好一些，因为它把左右两边div进行包裹起来写的。</p>
+<p><img src="static/img/layer.png" alt="我要的效果"></p>
+<ul>
+<li><p>主要考察的问题 margin-left/right在float环境下的影响 margin的负值会进行覆盖前面的dom元素</p>
+</li>
+<li><p>主要解决的问题</p>
+<ul>
+<li>左右两边固定长度，中间的div进行可适应。</li>
+<li>中间部分在dom结构上优先 以便于解析</li>
+<li>允许三列中的任意一列为最高列</li>
+<li>需要用额外的div</li>
+</ul>
+</li>
+</ul>
+<p>圣杯模式<br>dom结构信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div class=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;middle&quot;&gt;</span><br><span class="line">                中间</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt; 左边&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;right&quot;&gt;右边&lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">```   </span><br><span class="line">css代码 基础代码我这里就不写了 我就写比较重要实现的地方</span><br></pre></td></tr></table></figure>
+
+<p>.container{<br>    padding: 0 100px;<br>}<br>.middle {<br>    width: 100%;<br>}<br>.left: {<br>    width: 100px;<br>    margin-left: -100%; // 这里margin对应的百分比是自己的父元素 所以这里就是 middle的宽度咯 负数就是将这个dom往左移动 100%的父宽度。会盖住middle<br>    // 然后进行定位处理<br>    position: relative;<br>    left: -100px;  //向左移动100px<br>}<br>.right: {<br>    width: 100px;<br>    margin-right: -100px; //同理<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">##### 而双飞翼呢 从结构上看还是圣杯结构比较舒服</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;div&gt;
+    &lt;div class=&quot;header&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;middle&quot;&gt;middle&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;
+    &lt;div clas=&quot;footer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre><p>css部分 都是左浮动， 我大概写一下主要区别的内容<br>.container{<br>    float: left;<br>    width: 100%;<br>}<br>.middle{<br>    margin: 0 100px;<br>}<br>.left{<br>    width: 100px;<br>    margin-left: -100%; //由于父元素就是100%的长度 所以 双飞翼用不到定位的操作<br>}<br>.right{<br>    width: 100px;<br>    margin-left: -100px;<br>}<br>```<br>其他具体部分 可以看自己的印象笔记记录内容</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/15/浏览器渲染一个html-都经历了什么？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -793,7 +942,7 @@
               
                 <a href="/yaola.github.io/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

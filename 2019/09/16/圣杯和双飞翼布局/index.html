@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
+<meta name="description" content="花点时间整理下圣杯和双飞翼布局主要是解决左右两边定长 中间自适应的问题。当然在现在我觉得如果浏览器环境允许的话 使用Flex 最好代码量也少 先写个总结 圣杯/双飞翼个人感觉还是圣杯语感比较好一些，因为它把左右两边div进行包裹起来写的。   主要考察的问题 margin-left/right在float环境下的影响 margin的负值会进行覆盖前面的dom元素  主要解决的问题  左右两边固定长">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单的Mvvm小功能实现">
-<meta property="og:url" content="https://yaorihaohao.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/index.html">
+<meta property="og:title" content="圣杯和双飞翼布局">
+<meta property="og:url" content="https://yaorihaohao.github.io/yaola.github.io/2019/09/16/圣杯和双飞翼布局/index.html">
 <meta property="og:site_name" content="总结By yrh">
-<meta property="og:description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
+<meta property="og:description" content="花点时间整理下圣杯和双飞翼布局主要是解决左右两边定长 中间自适应的问题。当然在现在我觉得如果浏览器环境允许的话 使用Flex 最好代码量也少 先写个总结 圣杯/双飞翼个人感觉还是圣杯语感比较好一些，因为它把左右两边div进行包裹起来写的。   主要考察的问题 margin-left/right在float环境下的影响 margin的负值会进行覆盖前面的dom元素  主要解决的问题  左右两边固定长">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-11T07:08:57.205Z">
+<meta property="og:image" content="https://yaorihaohao.github.io/yaola.github.io/2019/09/16/圣杯和双飞翼布局/static/img/layer.png">
+<meta property="og:updated_time" content="2019-09-15T16:50:40.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单的Mvvm小功能实现">
-<meta name="twitter:description" content="晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况 new Vue()  =&amp;gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进">
+<meta name="twitter:title" content="圣杯和双飞翼布局">
+<meta name="twitter:description" content="花点时间整理下圣杯和双飞翼布局主要是解决左右两边定长 中间自适应的问题。当然在现在我觉得如果浏览器环境允许的话 使用Flex 最好代码量也少 先写个总结 圣杯/双飞翼个人感觉还是圣杯语感比较好一些，因为它把左右两边div进行包裹起来写的。   主要考察的问题 margin-left/right在float环境下的影响 margin的负值会进行覆盖前面的dom元素  主要解决的问题  左右两边固定长">
+<meta name="twitter:image" content="https://yaorihaohao.github.io/yaola.github.io/2019/09/16/圣杯和双飞翼布局/static/img/layer.png">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://yaorihaohao.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/">
+  <link rel="canonical" href="https://yaorihaohao.github.io/yaola.github.io/2019/09/16/圣杯和双飞翼布局/">
 
 
 
 
 
-  <title>简单的Mvvm小功能实现 | 总结By yrh</title>
+  <title>圣杯和双飞翼布局 | 总结By yrh</title>
   
 
 
@@ -232,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/11/简单的Mvvm小功能实现/">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/16/圣杯和双飞翼布局/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yaorihao">
@@ -249,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单的Mvvm小功能实现</h1>
+          <h1 class="post-title" itemprop="name headline">圣杯和双飞翼布局</h1>
         
 
         <div class="post-meta">
@@ -261,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-11T04:43:15+08:00">
-                2019-09-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-16T00:15:46+08:00">
+                2019-09-16
               </time>
             
 
@@ -299,8 +301,36 @@
       
 
       
-        <p>晚上花了一些事件进行对MVVM大致的流程进行了梳理 暂时还不熟悉markdown语法 先占个位记录下<br>由于Vue使用的是Object.defineProperty的原因  由于这个API的原因导致了不兼容IE8的情况</p>
-<p>new Vue()  =&gt; $mount（之前需要进行Compile）等等如果没有template 会进行正则转化且进行ast转换 查看是否有进行optimize标记 如果有不进行diff算法 。然后进行generate生成 render function 等 后续进行重新记录<br>已经凌晨4.50了 88 睡觉了</p>
+        <h3 id="花点时间整理下圣杯和双飞翼布局"><a href="#花点时间整理下圣杯和双飞翼布局" class="headerlink" title="花点时间整理下圣杯和双飞翼布局"></a>花点时间整理下圣杯和双飞翼布局</h3><p>主要是解决左右两边定长 中间自适应的问题。<br>当然在现在我觉得如果浏览器环境允许的话 使用<strong>Flex</strong> 最好代码量也少</p>
+<p>先写个总结 圣杯/双飞翼<br>个人感觉还是圣杯语感比较好一些，因为它把左右两边div进行包裹起来写的。</p>
+<p><img src="static/img/layer.png" alt="我要的效果"></p>
+<ul>
+<li><p>主要考察的问题 margin-left/right在float环境下的影响 margin的负值会进行覆盖前面的dom元素</p>
+</li>
+<li><p>主要解决的问题</p>
+<ul>
+<li>左右两边固定长度，中间的div进行可适应。</li>
+<li>中间部分在dom结构上优先 以便于解析</li>
+<li>允许三列中的任意一列为最高列</li>
+<li>需要用额外的div</li>
+</ul>
+</li>
+</ul>
+<p>圣杯模式<br>dom结构信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div class=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;middle&quot;&gt;</span><br><span class="line">                中间</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt; 左边&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;right&quot;&gt;右边&lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">```   </span><br><span class="line">css代码 基础代码我这里就不写了 我就写比较重要实现的地方</span><br></pre></td></tr></table></figure>
+
+<p>.container{<br>    padding: 0 100px;<br>}<br>.middle {<br>    width: 100%;<br>}<br>.left: {<br>    width: 100px;<br>    margin-left: -100%; // 这里margin对应的百分比是自己的父元素 所以这里就是 middle的宽度咯 负数就是将这个dom往左移动 100%的父宽度。会盖住middle<br>    // 然后进行定位处理<br>    position: relative;<br>    left: -100px;  //向左移动100px<br>}<br>.right: {<br>    width: 100px;<br>    margin-right: -100px; //同理<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">##### 而双飞翼呢 从结构上看还是圣杯结构比较舒服</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;div&gt;
+    &lt;div class=&quot;header&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;middle&quot;&gt;middle&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;
+    &lt;div clas=&quot;footer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre><p>css部分 都是左浮动， 我大概写一下主要区别的内容<br>.container{<br>    float: left;<br>    width: 100%;<br>}<br>.middle{<br>    margin: 0 100px;<br>}<br>.left{<br>    width: 100px;<br>    margin-left: -100%; //由于父元素就是100%的长度 所以 双飞翼用不到定位的操作<br>}<br>.right{<br>    width: 100px;<br>    margin-left: -100px;<br>}<br>```<br>其他具体部分 可以看自己的印象笔记记录内容</p>
 
       
     </div>
@@ -325,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/yaola.github.io/2019/09/09/总结记录/" rel="next" title="总结记录">
-                <i class="fa fa-chevron-left"></i> 总结记录
+              <a href="/yaola.github.io/2019/09/15/浏览器渲染一个html-都经历了什么？/" rel="next" title="浏览器渲染一个html 都经历了什么？">
+                <i class="fa fa-chevron-left"></i> 浏览器渲染一个html 都经历了什么？
               </a>
             
           </div>
@@ -334,10 +364,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/yaola.github.io/2019/09/14/zhongqiu/" rel="prev" title="中秋晚">
-                中秋晚 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -389,8 +415,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -432,6 +467,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#花点时间整理下圣杯和双飞翼布局"><span class="nav-number">1.</span> <span class="nav-text">花点时间整理下圣杯和双飞翼布局</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
