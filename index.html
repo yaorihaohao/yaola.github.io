@@ -229,6 +229,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/25/利用vue-directive-来实现el-dialog可拖拽/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaorihaohao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/yaola.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总结By yrh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/yaola.github.io/2019/09/25/利用vue-directive-来实现el-dialog可拖拽/" itemprop="url">利用vue-directive 来实现el-dialog可拖拽</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-25T01:18:04+08:00">
+                2019-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="2019-09-25-01-18-04"><a href="#2019-09-25-01-18-04" class="headerlink" title="2019-09-25 01:18:04"></a>2019-09-25 01:18:04</h3><p>之前几乎没有使用过 自定义指令 一般使用的是官方设定的那几个。<br>晚上为了实现拖拽的el-dialog 可以利用vue-directive进行定义方便，也方便之后的dialog使用</p>
+<h3 id="我的获得"><a href="#我的获得" class="headerlink" title="我的获得"></a>我的获得</h3><p>window.getComputedStyle 来计算最终dom的各属性值</p>
+<h3 id="先复习一下这个API"><a href="#先复习一下这个API" class="headerlink" title="先复习一下这个API"></a>先复习一下这个API</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(&apos;xxxx name&apos;, &#123;</span><br><span class="line">    bind: // 只调用一次，指令第一次绑定到元素时调用。 初始化设置的时候</span><br><span class="line">    inserted: // 被绑定元素插入父亲节点时</span><br><span class="line">    update: // 所在组件的VNode更新时调用 可能发生在其子VNode更新之前,</span><br><span class="line">    componentUpdated: //组件VNode和子VNode都更新完</span><br><span class="line">    unbind: // 只调用一次 解绑的时候</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 参数呢 ？</span><br><span class="line">el: 绑定的元素</span><br><span class="line">// 一个对象 里面包含了绑定信息</span><br><span class="line">binding： &#123;</span><br><span class="line">    name: &apos;指令名称&apos;,</span><br><span class="line">    value: 绑定的值</span><br><span class="line">    oldValue 绑定的前一个值</span><br><span class="line">    expression 绑定值的表达式</span><br><span class="line">    arg 参数</span><br><span class="line">    modifiers 表达式</span><br><span class="line">&#125;</span><br><span class="line">vnode：Vue编译生成的虚拟节点</span><br><span class="line">oldVnode 之前的一个虚拟节点</span><br></pre></td></tr></table></figure>
+
+<p><img src="static/img/move-dialog.png" alt="最终效果">;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">// el-dialog-move/index.js</span><br><span class="line">import Vue from &apos;vue&apos;; // 主要是为了使用Vue.directive()来使用的</span><br><span class="line">import dialog from &apos;./el-dialog-move&apos;;</span><br><span class="line"></span><br><span class="line">Vue.directive(&apos;yao-move&apos;, dialog);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// el-dialog-move.js</span><br><span class="line">export default &#123;</span><br><span class="line">    bind(el, binding, vnode, oldVnode)&#123;</span><br><span class="line">        </span><br><span class="line">        const dialogHeader = el.querySelector(&apos;.el-dialog__header&apos;);</span><br><span class="line">        const dialog = el.querySelector(&apos;.el-dialog&apos;);</span><br><span class="line">        </span><br><span class="line">        // 初始化操作</span><br><span class="line">        dialogHeader.style.cssText += &apos;;cursor: move;&apos;;</span><br><span class="line">        dialog.style.cssText += &apos;;left:0px; top:0px;&apos;;</span><br><span class="line"></span><br><span class="line">        dialogHeader.onmousedown = function(event)&#123;</span><br><span class="line">            let x = event.clientX - dialog.offsetLeft; // 记录按下的点到header左边框的距离</span><br><span class="line">            let y = event.clientY - dialog.offsetTop; // 记录按下的点到header上部的距离</span><br><span class="line"></span><br><span class="line">            let dialogWidth = dialog.offsetWidth;</span><br><span class="line">            let dialogHeight = dialog.offsetHeight;</span><br><span class="line">            </span><br><span class="line">            let screenX = document.body.clientWidth;</span><br><span class="line">            let screenY = document.body.clientHeight;</span><br><span class="line"></span><br><span class="line">            let minMoveDialogX = dialog.offsetLeft;</span><br><span class="line">            let maxMoveDialogX = screenX -  dialogWidth - dialog.offsetLeft;</span><br><span class="line"></span><br><span class="line">            let minMoveDialogY = dialog.offsetTop;</span><br><span class="line">            let maxMoveDialogY = screenY - dialogHeight - dialog.offsetTop;</span><br><span class="line"></span><br><span class="line">            &#123;</span><br><span class="line">                上面是我把最终结果都是left 0； top: 0的情况</span><br><span class="line">                let styleL = getComputedStyle(dialog, &apos;left&apos;);</span><br><span class="line">                let styleT = getComputedStyle(dialog, &apos;left&apos;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            document.onmousemove = function(e) &#123;</span><br><span class="line">                let left = e.clinetX - x; // 移动距离相对于左边框 计算的时候需要处理掉</span><br><span class="line">                let top = e.clinetY - y;</span><br><span class="line"></span><br><span class="line">                // 边界线处理</span><br><span class="line">                if(-(left) &gt; minMoveDialogX ) &#123;</span><br><span class="line">                    // 表示超过左侧</span><br><span class="line">                    left = -minMoveDialogX;</span><br><span class="line">                &#125; else if(left &gt; maxMoveDialogX) &#123;</span><br><span class="line">                    left = maxMoveDialogX;</span><br><span class="line">                &#125;</span><br><span class="line">                ...顶部也是类似操作</span><br><span class="line"></span><br><span class="line">                dialog.style.cssText += `;left:$&#123;left&#125;px;top:$&#123;top&#125;px;`</span><br><span class="line">                // dialog.style.cssText += `;left:$&#123;left + styleL&#125;px;top:$&#123;top + styleT&#125;px;`</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/09/18/关于vuex的模拟/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1069,7 +1193,7 @@
               
                 <a href="/yaola.github.io/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
