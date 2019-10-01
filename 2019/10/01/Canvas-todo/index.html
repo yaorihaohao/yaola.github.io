@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/yaola.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/yaola.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/yaola.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/yaola.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/yaola.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/yaola.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/yaola.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2019.10.01 03:27 am  睡不着起来看下canvas初步 进行下总结 是什么？ 12&amp;lt;canvas&amp;gt;标签是H5中新增的元素，可以用于使用js中的脚本进行绘制图形。(图形/照片/动画/甚至实时视频或渲染)&amp;lt;canvas&amp;gt;相当于画布 而javascript相当于画笔 负责去画  解决了什么问题？之前都是直接去使用img标签去进行嵌入图像 我希望去动呢 后来出现了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canvas todo">
+<meta property="og:url" content="https://yaorihaohao.github.io/yaola.github.io/2019/10/01/Canvas-todo/index.html">
+<meta property="og:site_name" content="总结By yrh">
+<meta property="og:description" content="2019.10.01 03:27 am  睡不着起来看下canvas初步 进行下总结 是什么？ 12&amp;lt;canvas&amp;gt;标签是H5中新增的元素，可以用于使用js中的脚本进行绘制图形。(图形/照片/动画/甚至实时视频或渲染)&amp;lt;canvas&amp;gt;相当于画布 而javascript相当于画笔 负责去画  解决了什么问题？之前都是直接去使用img标签去进行嵌入图像 我希望去动呢 后来出现了">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yaorihaohao.github.io/yaola.github.io/2019/10/01/Canvas-todo/static/img/demo1.gif">
+<meta property="og:updated_time" content="2019-10-01T16:21:31.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Canvas todo">
+<meta name="twitter:description" content="2019.10.01 03:27 am  睡不着起来看下canvas初步 进行下总结 是什么？ 12&amp;lt;canvas&amp;gt;标签是H5中新增的元素，可以用于使用js中的脚本进行绘制图形。(图形/照片/动画/甚至实时视频或渲染)&amp;lt;canvas&amp;gt;相当于画布 而javascript相当于画笔 负责去画  解决了什么问题？之前都是直接去使用img标签去进行嵌入图像 我希望去动呢 后来出现了">
+<meta name="twitter:image" content="https://yaorihaohao.github.io/yaola.github.io/2019/10/01/Canvas-todo/static/img/demo1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/yaola.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yaorihaohao.github.io/yaola.github.io/2019/10/01/Canvas-todo/">
+
+
+
+
+
+  <title>Canvas todo | 总结By yrh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/yaola.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">总结By yrh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/yaola.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/yaola.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/10/01/Canvas-todo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaorihaohao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/yaola.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总结By yrh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Canvas todo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-01T03:27:25+08:00">
+                2019-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2019.10.01 03:27 am </p>
+<h4 id="睡不着起来看下canvas初步-进行下总结"><a href="#睡不着起来看下canvas初步-进行下总结" class="headerlink" title="睡不着起来看下canvas初步 进行下总结"></a>睡不着起来看下canvas初步 进行下总结</h4><ol>
+<li><p>是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas&gt;标签是H5中新增的元素，可以用于使用js中的脚本进行绘制图形。(图形/照片/动画/甚至实时视频或渲染)</span><br><span class="line">&lt;canvas&gt;相当于画布 而javascript相当于画笔 负责去画</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决了什么问题？<br>之前都是直接去使用img标签去进行嵌入图像 我希望去动呢 后来出现了audio video标签但是没有图像相关的。<br>极倔web页面只能显示静态图片问题。</p>
+</li>
+</ol>
+<h5 id="支持情况"><a href="#支持情况" class="headerlink" title="支持情况"></a>支持情况</h5><table>
+<thead>
+<tr>
+<th>元素</th>
+<th>Chrome</th>
+<th>IE</th>
+<th>Firefox</th>
+<th>Safari</th>
+<th>Opera</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Canvas</td>
+<td>4.0+</td>
+<td>9.0+</td>
+<td>2.0+</td>
+<td>3.1+</td>
+<td>9.0+</td>
+</tr>
+</tbody></table>
+<h5 id="例子分析-如果需要画一个圆"><a href="#例子分析-如果需要画一个圆" class="headerlink" title="例子分析 如果需要画一个圆"></a>例子分析 如果需要画一个圆</h5><p>1.img图片的形式去做 替换的时候的成本太大了 并且会生成请求<br>2.div + css 只能画简单的东西 复杂的话还是太麻烦<br>3.svg跟图片类似 但是有些区别<br>4.canvas + js 可以动态去画</p>
+<p>svg中每一个元素其实都是dom会直接导致页面的重新绘制，但他是适量图。<br>canvas 只有在位置变化，体积 变化的时候会导致页面重绘，依赖分辨率。<br>性能上 canvas数量较多的情况 &gt; svg的，<br>如果数量少的话 svg也可行 这个看实际的应用场景。<br>主要就是要帅</p>
+<h6 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h6><p>定义宽跟高的区别 如果不设定初始值的话是 300 * 150</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">直接去定义&lt;canvas width=&quot;400&quot; height=&quot;400&quot;&gt; &lt;/canvas&gt; // 定义画布  </span><br><span class="line"></span><br><span class="line">但是如果</span><br><span class="line">#canvastest&#123;</span><br><span class="line">    width: 400px;</span><br><span class="line">    height:400px</span><br><span class="line">&#125;</span><br><span class="line">css来定义你会发现 原型被拉伸了 这是因为如果使用的是css来定义的话 会以300 *150的比例进行放大缩小等</span><br><span class="line">所以尽量使用直接定义或者使用 js动态定义的方式去初始化画布</span><br></pre></td></tr></table></figure>
+
+<p>创建顺序<br>1.创建获取上下文 el.getContext(‘2d’)<br>2.开始绘制路线   el.beginPath();<br>2.绘制路径<br>3.关闭路径 el.closePath();<br>4.填充颜色/或秒边</p>
+<p>arc(x, y ,r, sAngle, eAngle,顺时针还是逆时针) 画圆<br>stroke() 画边<br>moveTo() 移动起始点<br>lineTo() 画直线到某个点 (lineCap/lineJoin/lineWidth/miterLimit)<br>fillRact(x, y, width, height)   画实心矩形<br>strokeRect(x, y, width,height) 空心矩形</p>
+<p>fillStyle/strokeStyle/shadowColor/shadowBlur/shadowOffsetX/shadowOffsetY 样式<br>设置渐变<br>createLinearGradient(x0,y0, x1, y1); 搭配 addColorStop(number, ‘颜色样式进行使用’)</p>
+<p>另外图形转化大致与css中差不多<br>scale()/rotate( 旋转角度 * Math.PI /180)/translate()/transform/setTransform</p>
+<p>最重要一点就是<br>drawImage() 向画布上绘制图像、画布或者视频<br>drawImage(‘图像/画布/视频’, 剪切的x坐标, 剪切的y坐标, swith被剪切图像的宽度, sheight, x画布上图像方式的位子, y,width, height)</p>
+<p><img src="static/img/demo1.gif" alt="最终效果"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">代码不做赘述 关键方法是requestAnimationFrame(()=&gt;&#123;&#125;)  </span><br><span class="line">MDN上的解释是告诉浏览器 你希望执行一个动画，并且要求在下次重绘之前执行它， 由他来替代setTimeout/setInterval 因为这个两个方法存在不确定性</span><br><span class="line"></span><br><span class="line">兼容方面 需要IE10</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/yaola.github.io/2019/09/25/利用vue-directive-来实现el-dialog可拖拽/" rel="next" title="利用vue-directive 来实现el-dialog可拖拽">
+                <i class="fa fa-chevron-left"></i> 利用vue-directive 来实现el-dialog可拖拽
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yaorihaohao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/yaola.github.io/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#睡不着起来看下canvas初步-进行下总结"><span class="nav-number">1.</span> <span class="nav-text">睡不着起来看下canvas初步 进行下总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#支持情况"><span class="nav-number">1.1.</span> <span class="nav-text">支持情况</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子分析-如果需要画一个圆"><span class="nav-number">1.2.</span> <span class="nav-text">例子分析 如果需要画一个圆</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#开始使用"><span class="nav-number">1.2.1.</span> <span class="nav-text">开始使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaorihaohao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/yaola.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yaola.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yaola.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yaola.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yaola.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/yaola.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/yaola.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/yaola.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/yaola.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/yaola.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/yaola.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
