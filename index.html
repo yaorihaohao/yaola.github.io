@@ -229,6 +229,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/10/19/PWA实战感觉记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaorihaohao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/yaola.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总结By yrh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/yaola.github.io/2019/10/19/PWA实战感觉记录/" itemprop="url"><pwa实战感觉记录></pwa实战感觉记录></a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-19T21:59:30+08:00">
+                2019-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###《PWA实战 - 面向下一代的Progressive web app》</p>
+<p>想提升用户体验，构建一个离线的网站，又想为用户提供瞬间加载的体验<br>===&gt; 我想到的是<br>车间webapp 移动设备网络导致的用户体验其实不太好, 对应的路由器覆盖范围有限 设备分布在不同的角落 , 现场使用发现正常范围响应可以接受。但偏离一点就相对不好了。</p>
+<p>相对于普通webapp的优势</p>
+<ol>
+<li>响应式</li>
+<li>独立于网络链接</li>
+<li>类似原生应用的交互体验</li>
+<li>保持更新</li>
+<li>安全</li>
+<li>可发现 可重新链接 可安装</li>
+</ol>
+<p>例如在员工填报方面 如果网络不好或者完全没有的情况下 页面实际上加载不出来。<br>考虑到多端的开发成本 感觉是可以使用到PWA</p>
+<h3 id="ServiceWorker：-PWA的关键"><a href="#ServiceWorker：-PWA的关键" class="headerlink" title="ServiceWorker： PWA的关键"></a>ServiceWorker： PWA的关键</h3><p>最重要的是 渐进式增强<br>如果在设备不支持serviceWorker的时候 这个完全就是一个基本的webApp<br>如果支持 这就提高了体验了</p>
+<p>serviceWorker 使用js编写的 但是和一般我们编写的不太一样<br>运行环境是在worker上下文中，和重要的js运行在不同的线程中 所以他不会被阻塞 完全是异步的</p>
+<p>所以导致的原因</p>
+<ol>
+<li>无法修改网页中的元素 无法访问到对应的dom</li>
+<li>只能使用https(防止外部修改 非法链接到其他的环境中)</li>
+<li>无法使用同步的XHR和localStorage</li>
+</ol>
+<p>判断条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(&apos;serviceWorker&apos; in navigator) &#123;</span><br><span class="line">    navigator.serviceWorker.register(&apos;/sw.js&apos;).then(() =&gt; &#123;</span><br><span class="line">        // todo</span><br><span class="line">    &#125; )</span><br><span class="line">    // todo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">当然内部也就可以使用监听fetch 来进行接口的代理了 所以挺方便的</span><br></pre></td></tr></table></figure>
+
+<p>主要是通过HTTPS 来支撑服务 这一点相对于封闭的车间环境考虑的话 比较鸡肋 当然也有免费的认证 这个后续继续跟进这部分的内容</p>
+<h2 id="Web很强大-利用浏览器提供的serviceWorker更强大！"><a href="#Web很强大-利用浏览器提供的serviceWorker更强大！" class="headerlink" title="Web很强大 利用浏览器提供的serviceWorker更强大！"></a>Web很强大 利用浏览器提供的serviceWorker更强大！</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yaorihaohao.github.io/yaola.github.io/yaola.github.io/2019/10/01/Canvas-todo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -340,6 +483,9 @@
 <p>最重要一点就是<br>drawImage() 向画布上绘制图像、画布或者视频<br>drawImage(‘图像/画布/视频’, 剪切的x坐标, 剪切的y坐标, swith被剪切图像的宽度, sheight, x画布上图像方式的位子, y,width, height)</p>
 <p><img src="static/img/demo1.gif" alt="最终效果"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">代码不做赘述 关键方法是requestAnimationFrame(()=&gt;&#123;&#125;)  </span><br><span class="line">MDN上的解释是告诉浏览器 你希望执行一个动画，并且要求在下次重绘之前执行它， 由他来替代setTimeout/setInterval 因为这个两个方法存在不确定性</span><br><span class="line"></span><br><span class="line">兼容方面 需要IE10</span><br></pre></td></tr></table></figure>
+
+<p>matchall</p>
+
           
         
       
@@ -1351,7 +1497,7 @@
               
                 <a href="/yaola.github.io/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
